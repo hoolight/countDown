@@ -1,8 +1,10 @@
 <template>
   <div class="main">
-    <span class="text">还剩</span>
-    <span class="time">{{meet.day}}天{{meet.hour}}时{{meet.minute}}分{{meet.second}}秒</span>
-    <span>可以见面</span>
+    <div v-if="showTime">
+      <span class="text">还剩</span>
+      <span class="time">{{meet.day}}天{{meet.hour}}时{{meet.minute}}分{{meet.second}}秒</span>
+      <span>可以见面</span>
+    </div>
   </div>
 </template>
 
@@ -17,6 +19,7 @@ export default {
         minute:'',
         second:''
       },
+      showTime:true,
       timer:null
     }
   },
@@ -26,10 +29,13 @@ export default {
   methods:{
     do(){
       this.timer&&clearTimeout(this.timer)
-      const date=Date.parse('2021-08-20 22:00:00')
+      const date=Date.parse('2021-08-20T22:00:00')
       const now=Date.now();
       let duration=date-now
-      if (duration<0)return;
+      if (duration<0){
+        this.showTime = false
+        return;
+      }
       this.meet=this.durationFormatter(duration);
       this.timer=setTimeout(()=>{this.do()},1000)
     },
