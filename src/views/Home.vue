@@ -3,6 +3,7 @@
 <!--    <img alt="Vue logo" src="../assets/logo.png">-->
 <!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
     <Date/>
+    <a href="https://beian.miit.gov.cn/" target="_blank" class="beian">京ICP备2021025191号</a>
   </div>
 </template>
 
@@ -18,3 +19,10 @@ export default {
   }
 }
 </script>
+<style>
+  .beian{
+    position: fixed;
+    bottom: 0;
+    right: 45%;
+  }
+</style>
